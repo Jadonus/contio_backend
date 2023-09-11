@@ -1,11 +1,15 @@
-# email_check.py
-
-from django.core.mail import send_mail
+print('function activated!')
+import os
+import sys
 from django.conf import settings
-from src.models import OriginEmailStatus, Meeting
+from models import OriginEmailStatus, Meeting
 from django.utils import timezone
 import time
+
+# Add your project's base directory to the Python path
 def send_scheduled_emails():
+
+    from django.core.mail import send_mail
     current_time = timezone.now()
 
     # Get all unsent emails scheduled for sending
