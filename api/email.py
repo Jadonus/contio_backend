@@ -90,7 +90,7 @@ def send_scheduled_emails():
             print(f"Email sending error: {str(e)}")
 
 # Define the handler for Vercel
-class CustomHandler(BaseHTTPRequestHandler):
+class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         # Call your script here when a GET request is made
         send_scheduled_emails()
@@ -100,8 +100,5 @@ class CustomHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
         self.wfile.write('Script executed successfully'.encode('utf-8'))
-
+        return
 # Entry point for Vercel
-def handler(event, context):
-    httpd = CustomHandler(None, None)
-    httpd.handle_request()
