@@ -5,8 +5,7 @@ from django.conf import settings
 from src.models import OriginEmailStatus, Meeting
 from django.utils import timezone
 import time
-
-_ = _
+- = sdf-sdf-sdf12
 # Add your project's base directory to the Python path
 def send_scheduled_emails():
 
