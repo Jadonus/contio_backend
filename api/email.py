@@ -1,4 +1,5 @@
-print('function activated!')
+sys.stderr.write('This is an error message or log output\n')
+
 import os
 import sys
 from django.conf import settings
