@@ -1,5 +1,4 @@
-sys.stderr.write('This is an error message or log output\n')
-
+print('YES')
 import os
 import sys
 from django.conf import settings
