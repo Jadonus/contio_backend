@@ -1,21 +1,24 @@
-print('YES')
+# Import necessary modules
+from http.server import BaseHTTPRequestHandler
 import os
 import django
-
-django.setup()
-from contio_backend import settings  # Replace 'myproject' with your project name
-
 import sys
 from django.conf import settings
 from src.models import OriginEmailStatus, Meeting
 from django.utils import timezone
 import time
 import json
+from django.core.mail import send_mail
+
+# Initialize Django
+django.setup()
+from contio_backend import settings  # Replace 'myproject' with your project name
 
 # Add your project's base directory to the Python path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+# Your send_scheduled_emails function
 def send_scheduled_emails():
-    from django.core.mail import send_mail
     current_time = timezone.now()
 
     # Get all unsent emails scheduled for sending
@@ -85,6 +88,19 @@ def send_scheduled_emails():
             # Debugging: Print any exceptions that occur during email sending
             print(f"Email sending error: {str(e)}")
 
-if __name__ == "__main__":
-    # Call your script here when running as a standalone script
-    send_scheduled_emails()
+# Define the handler for Vercel
+class CustomHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        # Call your script here when a GET request is made
+        send_scheduled_emails()
+        
+        # Respond with a success message
+        self.send_response(200)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
+        self.wfile.write('Script executed successfully'.encode('utf-8'))
+
+# Entry point for Vercel
+def handler(event, context):
+    httpd = CustomHandler(None, None)
+    httpd.handle_request()
