@@ -58,6 +58,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:8000",
+    "https://contio-backend.vercel.app"
 ]
 ROOT_URLCONF = 'contio_backend.urls'
 
