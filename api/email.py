@@ -2,7 +2,7 @@ print('function activated!')
 import os
 import sys
 from django.conf import settings
-from models import OriginEmailStatus, Meeting
+from src.models import OriginEmailStatus, Meeting
 from django.utils import timezone
 import time
 
