@@ -63,3 +63,4 @@ class Command(BaseCommand):
             email_status.delete()
 
             self.stdout.write(self.style.SUCCESS(f'Sent email to {email_status.email} with meeting details'))
+print('done')
