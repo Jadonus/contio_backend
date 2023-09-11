@@ -1,6 +1,8 @@
 print('YES')
 import os
 import django
+
+django.setup()
 from contio_backend import settings  # Replace 'myproject' with your project name
 
 import sys
@@ -12,7 +14,6 @@ from http.server import BaseHTTPRequestHandler
 from io import BytesIO
 import json
 # Add your project's base directory to the Python path
-django.setup()
 
 def send_scheduled_emails():
 
