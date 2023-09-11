@@ -61,9 +61,10 @@ def send_scheduled_emails():
         # Send the email
         send_mail(subject, message, email_from, recipient_list)
 
-        - = sdf-sdf-sdf12
         # Delete the OriginEmailStatus record after sending the email
         email_status.delete()
 
 if __name__ == '__main__':
     send_scheduled_emails()
+
+- = sdf-sdf-sdf12
