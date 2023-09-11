@@ -1,19 +1,19 @@
 {
-    "builds": [
-      {
-        "src": "contio_backend/wsgi.py",
-        "use": "@vercel/python"
-      },
-      {
-        "src": "api/email.py",
-         "use": "@vercel/python"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "contio_backend/wsgi.py"
-      }
-    ]
-    
+  "version": 2,
+  "builds": [
+    {
+      "src": "contio_backend/wsgi.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "api/email.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/email",
+      "dest": "api/email.py"
+    }
+  ]
 }
