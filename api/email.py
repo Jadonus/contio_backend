@@ -2,6 +2,8 @@
 from http.server import BaseHTTPRequestHandler
 import os
 import django
+
+django.setup()
 import sys
 from django.conf import settings
 from src.models import OriginEmailStatus, Meeting
@@ -11,7 +13,6 @@ import json
 from django.core.mail import send_mail
 
 # Initialize Django
-django.setup()
 from contio_backend import settings  # Replace 'myproject' with your project name
 
 # Add your project's base directory to the Python path
