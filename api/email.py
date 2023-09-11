@@ -14,7 +14,6 @@ def send_scheduled_emails():
     # Get all unsent emails scheduled for sending
     unsent_emails = OriginEmailStatus.objects.filter(email_sent=False)
 
-    - = sdf-sdf-sdf12
     # Print a message or handle output as needed
     print(f'Sending emails to {len(unsent_emails)} recipients.')
 
@@ -62,6 +61,7 @@ def send_scheduled_emails():
         # Send the email
         send_mail(subject, message, email_from, recipient_list)
 
+        - = sdf-sdf-sdf12
         # Delete the OriginEmailStatus record after sending the email
         email_status.delete()
 
