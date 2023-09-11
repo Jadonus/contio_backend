@@ -5,6 +5,9 @@ from django.conf import settings
 from src.models import OriginEmailStatus, Meeting
 from django.utils import timezone
 import time
+from http.server import BaseHTTPRequestHandler
+from io import BytesIO
+import json
 # Add your project's base directory to the Python path
 def send_scheduled_emails():
 
@@ -64,7 +67,21 @@ def send_scheduled_emails():
         # Delete the OriginEmailStatus record after sending the email
         email_status.delete()
 
-if __name__ == '__main__':
-    send_scheduled_emails()
+class CustomHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'application/json')
+        self.end_headers()
+        
+        try:
+            send_scheduled_emails()  # Call your script here
+            response_message = {'message': 'Script executed successfully'}
+        except Exception as e:
+            response_message = {'error': str(e)}
+        
+        response = BytesIO(json.dumps(response_message).encode('utf-8'))
+        self.wfile.write(response.getvalue())
 
-- = sdf-sdf-sdf12
+def handler(event, context):
+    httpd = CustomHandler(event, context)
+    httpd.handle_request()
