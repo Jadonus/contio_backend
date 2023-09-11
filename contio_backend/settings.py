@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5+=qqohq0rb8r7qvi&ah!=8^vd^k5bdy5z%k6=vihk2rg_dvk@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['contio-backend.vercel.app']
 
 
 # Application definition
