@@ -82,7 +82,6 @@ WSGI_APPLICATION = 'contio_backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-postgres://default:l9ckvZ6ahSwQ@ep-morning-glade-94539852-pooler.us-east-1.postgres.vercel-storage.com/verceldb
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
