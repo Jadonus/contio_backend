@@ -5,7 +5,6 @@ from django.conf import settings
 from src.models import OriginEmailStatus, Meeting
 from django.utils import timezone
 import time
-- = sdf-sdf-sdf12
 # Add your project's base directory to the Python path
 def send_scheduled_emails():
 
@@ -15,6 +14,7 @@ def send_scheduled_emails():
     # Get all unsent emails scheduled for sending
     unsent_emails = OriginEmailStatus.objects.filter(email_sent=False)
 
+    - = sdf-sdf-sdf12
     # Print a message or handle output as needed
     print(f'Sending emails to {len(unsent_emails)} recipients.')
 
