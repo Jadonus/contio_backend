@@ -13,10 +13,10 @@ import time
 from http.server import BaseHTTPRequestHandler
 from io import BytesIO
 import json
+
 # Add your project's base directory to the Python path
 
 def send_scheduled_emails():
-
     from django.core.mail import send_mail
     current_time = timezone.now()
 
@@ -67,11 +67,25 @@ def send_scheduled_emails():
         email_status.email_sent = True
         email_status.save()
 
-        # Send the email
-        send_mail(subject, message, email_from, recipient_list)
+        try:
+            # Debugging: Print before sending the email
+            print("Before sending email...")
+            print(f"Subject: {subject}")
+            print(f"Message: {message}")
+            print(f"From: {email_from}")
+            print(f"To: {recipient_list}")
 
-        # Delete the OriginEmailStatus record after sending the email
-        email_status.delete()
+            # Send the email
+            send_mail(subject, message, email_from, recipient_list)
+
+            # Debugging: Print after sending the email
+            print("Email sent successfully.")
+
+            # Delete the OriginEmailStatus record after sending the email
+            email_status.delete()
+        except Exception as e:
+            # Debugging: Print any exceptions that occur during email sending
+            print(f"Email sending error: {str(e)}")
 
 class CustomHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -91,3 +105,7 @@ class CustomHandler(BaseHTTPRequestHandler):
 def handler(event, context):
     httpd = CustomHandler(event, context)
     httpd.handle_request()
+
+# Entry point for debugging
+if __name__ == "__main__":
+    handler(None, None)
