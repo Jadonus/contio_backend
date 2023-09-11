@@ -1,5 +1,8 @@
 print('YES')
 import os
+import django
+from contio_backend import settings  # Replace 'myproject' with your project name
+
 import sys
 from django.conf import settings
 from src.models import OriginEmailStatus, Meeting
@@ -9,6 +12,8 @@ from http.server import BaseHTTPRequestHandler
 from io import BytesIO
 import json
 # Add your project's base directory to the Python path
+django.setup()
+
 def send_scheduled_emails():
 
     from django.core.mail import send_mail
