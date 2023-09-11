@@ -23,5 +23,5 @@ urlpatterns = [
 
     path('',contio_backend.views.AboutUs,name="home"),
 
-    path('api/', include('src.urls')),  
+    path('meeting/', include('src.urls')),  
 ]

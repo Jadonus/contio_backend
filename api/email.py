@@ -7,10 +7,9 @@ application = get_wsgi_application()
 
 class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        if self.path.startswith('/vercel/api/emailcheck'):
 
-        # Trigger your Django management command here
-            call_command('emailcheck')
+        # Trigger your Django management command her
+        call_command('emailcheck')
 
 def run_server():
     server_address = ('', 8000)
