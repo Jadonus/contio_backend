@@ -84,7 +84,6 @@ def send_scheduled_emails():
             print("Email sent successfully.")
 
             # Delete the OriginEmailStatus record after sending the email
-            email_status.delete()
         except Exception as e:
             # Debugging: Print any exceptions that occur during email sending
             print(f"Email sending error: {str(e)}")
