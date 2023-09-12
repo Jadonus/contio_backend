@@ -32,7 +32,8 @@ def send_scheduled_emails():
         print(f"Attempting to send email to: {email_status.email}")
 
         # Fetch all Meetings with a matching origikn
-        print(f"OriginEmailStatus Origin: {email_status.origin}")
+        print(f"Meeting Generated Link: {email_status.generatedLink}")
+
 
         matching_meetings = Meeting.objects.filter(origin=email_status.generatedLink)
         print(f"Meeting Generated Link: {email_status.generatedLink}")
