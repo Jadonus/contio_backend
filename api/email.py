@@ -36,7 +36,7 @@ def send_scheduled_emails():
 
 
         matching_meetings = Meeting.objects.filter(origin=email_status.generatedLink)
-        print(f"Meeting Generated Link: {email_status.generatedLink}")
+        print(matching_meetings)
 
         subject = 'Your scheduling responses'
         message = f'Hi There, thank you for using Contio!\n\n'
