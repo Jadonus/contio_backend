@@ -100,17 +100,17 @@ class handler(BaseHTTPRequestHandler):
         # Call your script here when a GET request is made
         unsent_emails = OriginEmailStatus.objects.filter(email_sent=False)
         for email_status in unsent_emails:
-
+            
+            current_time = timezone.now()
             link = email_status.generatedLink
             email_status = OriginEmailStatus.objects.get(generatedLink=link)
 
             creation_time = email_status.created_at
             target_time = creation_time + datetime.timedelta(days=2)
-            current_time = datetime.datetime.now()
             tolerance = datetime.timedelta(seconds=60)
             if target_time - tolerance <= current_time <= target_time + tolerance:
-       #     Run the code
-               send_scheduled_emails()
+            # Run the code
+                send_scheduled_emails()
         
         # Respond with a success message
         self.send_response(200)
