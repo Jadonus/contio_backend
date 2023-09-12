@@ -5,6 +5,8 @@ import django
 
 django.setup()
 import sys
+import datetime
+
 from django.conf import settings
 from src.models import OriginEmailStatus, Meeting
 from django.utils import timezone
@@ -96,12 +98,24 @@ def send_scheduled_emails():
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         # Call your script here when a GET request is made
-        send_scheduled_emails()
+        unsent_emails = OriginEmailStatus.objects.filter(email_sent=False)
+        for email_status in unsent_emails:
+
+            link = email_status.generatedLink
+            email_status = OriginEmailStatus.objects.get(generatedLink=link)
+
+            creation_time = email_status.created_at
+            target_time = creation_time + datetime.timedelta(days=2)
+            current_time = datetime.datetime.now()
+            tolerance = datetime.timedelta(seconds=60)
+            if target_time - tolerance <= current_time <= target_time + tolerance:
+       #     Run the code
+               send_scheduled_emails()
         
         # Respond with a success message
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
-        self.wfile.write('Script executed successfully'.encode('utf-8'))
+        self.wfile.write('Email Checking executed successfully'.encode('utf-8'))
         return
 # Entry point for Vercel
