@@ -31,8 +31,11 @@ def send_scheduled_emails():
     for email_status in unsent_emails:
         print(f"Attempting to send email to: {email_status.email}")
 
-        # Fetch all Meetings with a matching origin
+        # Fetch all Meetings with a matching origikn
+        print(f"OriginEmailStatus Origin: {email_status.origin}")
+
         matching_meetings = Meeting.objects.filter(origin=email_status.generatedLink)
+        print(f"Meeting Generated Link: {email_status.generatedLink}")
 
         subject = 'Your scheduling responses'
         message = f'Hi There, thank you for using Contio!\n\n'
