@@ -15,7 +15,7 @@ import json
 from django.core.mail import send_mail
 
 # Initialize Django
-from contio_backend import settings  # Replace 'myproject' with your project name
+from contio_backend import settings
 
 # Add your project's base directory to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -62,8 +62,12 @@ def send_scheduled_emails():
 
             for meeting_date, info in meeting_info.items():
                 count = info['count']
-                users = ', '.join(info['users'])
-                message += f'{users} selected the meeting on {meeting_date}:\n'
+                if count > 2:
+                    users = ', '.join(info['users'])
+                    message += f'{users} selected the meeting on {meeting_date}:\n'
+                else:
+                    users = 'and '.join(info['users'])
+                    message += f'{users} selected the meeting on {meeting_date}:\n'
         else:
             # If no matching meetings found, include a message indicating so
             message += 'Oh no! You got no responses 😢. Maybe try smoke signals?\n'
