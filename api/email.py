@@ -113,11 +113,12 @@ class handler(BaseHTTPRequestHandler):
 
             creation_time = email_status.created_at
             target_time = creation_time# + datetime.timedelta(days=2)
+
             tolerance = datetime.timedelta(seconds=60)
-            #if target_time - tolerance <= current_time <= target_time + tolerance:
+            if current_time >= target_time:
             # Run the code
-            print('sending please please please work. ')
-            send_scheduled_emails()
+                print('sending please please please work. ')
+                send_scheduled_emails()
 
             self.wfile.write('Email Sent!'.encode('utf-8'))
         
