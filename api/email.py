@@ -101,6 +101,7 @@ def send_scheduled_emails():
 
 # Define the handler for Vercel
 class handler(BaseHTTPRequestHandler):
+    print('ENTERING HANDLER PLEASE LOG')
     def do_GET(self):
         # Call your script here when a GET request is made
         unsent_emails = OriginEmailStatus.objects.filter(email_sent=False)
