@@ -19,9 +19,10 @@ from contio_backend import settings
 
 # Add your project's base directory to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
+print('Checking emails...')
 # Your send_scheduled_emails function
 def send_scheduled_emails():
+    print('In Scheduled Email')
     current_time = timezone.now()
 
     # Get all unsent emails scheduled for sending
@@ -114,7 +115,10 @@ class handler(BaseHTTPRequestHandler):
             tolerance = datetime.timedelta(seconds=60)
             if target_time - tolerance <= current_time <= target_time + tolerance:
             # Run the code
+
                 send_scheduled_emails()
+
+                self.wfile.write('Email Sent!'.encode('utf-8'))
         
         # Respond with a success message
         self.send_response(200)
