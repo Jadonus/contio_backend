@@ -120,7 +120,6 @@ class handler(BaseHTTPRequestHandler):
                 print('sending please please please work. ')
                 send_scheduled_emails()
 
-            self.wfile.write('Email Sent!'.encode('utf-8'))
         
         # Respond with a success message
         self.send_response(200)
