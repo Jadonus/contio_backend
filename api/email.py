@@ -112,7 +112,7 @@ class handler(BaseHTTPRequestHandler):
             email_status = OriginEmailStatus.objects.get(generatedLink=link)
 
             creation_time = email_status.created_at
-            send_delay = OriginEmailStatus.objects.get(send_delay)
+            send_delay = OriginEmailStatus.objects.get('send_delay')
             target_time = creation_time + datetime.timedelta(days=send_delay)
 
             tolerance = datetime.timedelta(seconds=60)
