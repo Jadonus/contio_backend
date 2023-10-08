@@ -18,11 +18,12 @@ class Meeting(models.Model):
 
 class OriginEmailStatus(models.Model):
     meeting = models.ForeignKey(Meeting, on_delete=models.CASCADE, null=True)
-
+    
     email_sent = models.BooleanField(default=False)
     generatedLink = models.CharField(max_length=255, null=True, default=None)
+    send_delay = models.IntegerField(default=2) 
 
-    # Set a suitable default email address (example email)
+    #    geeks_field = models.IntegerField() 
     email = models.EmailField(null=True, default=None)
 
     created_at = models.DateTimeField(auto_now_add=True)

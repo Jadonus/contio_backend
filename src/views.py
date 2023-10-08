@@ -43,16 +43,12 @@ class YourNewView(APIView):
             generated_link = data.get('generatedLink')
             origin_url = data.get('x_origin_url', 'default_value_if_header_is_missing')
             email = data.get('email')
+            sentime=data.get('sentime')
             print(data)
-            
-            # Remove this line because you don't need to fetch the 'meeting_id' here
-            # meeting_id = data.get('meeting_id')
-
-            # Create a new Meeting instance since it seems you're creating one
-            # Create a new OriginEmailStatus instance and associate it with the Meeting
             origin_status, created = OriginEmailStatus.objects.get_or_create(generatedLink=generated_link)
             origin_status.origin_url = origin_url
             origin_status.email = email
+            origin_status.send_delay = sentime
             origin_status.save()
 
             return JsonResponse({'message': 'Data saved successfully'}, status=status.HTTP_200_OK)
