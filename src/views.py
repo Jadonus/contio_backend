@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from .models import Meeting, OriginEmailStatus
 from .utils import get_dates_from_origin_url
 
+from urllib.parse import unquote
 
 
 
@@ -55,4 +56,24 @@ class YourNewView(APIView):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+class Admin(APIView):
+    def post(self, request, format=None):
+        try:
+            data = request.data
+            link = data.get('link')
+
+            found = Meeting.objects.filter(origin=link)
+             
+            if found:
+                for obj in found:
+                    print(found)
+                serialized_data = [{'Name': obj.name, 'Date': obj.date} for obj in found]
+                print(serialized_data)
+            else:
+                print(f'No matches found for origin: {link}')
+                serialized_data = []  # Empty list when no matches are found
+            
+            return JsonResponse({'data': serialized_data}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
