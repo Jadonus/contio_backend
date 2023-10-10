@@ -114,13 +114,14 @@ class handler(BaseHTTPRequestHandler):
             creation_time = email_status.created_at
             send_delay = OriginEmailStatus.objects.first().send_delay
             target_time = creation_time + datetime.timedelta(days=send_delay)
-
+            print('Target Time: ' + target_time)
             tolerance = datetime.timedelta(seconds=60)
             if current_time >= target_time:
             # Run the code
                 print('sending please please please work. ')
                 send_scheduled_emails()
-
+            else:
+                print('No emails or not time yet.')
         
         # Respond with a success message
         self.send_response(200)
