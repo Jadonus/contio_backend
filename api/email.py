@@ -1,3 +1,6 @@
+import django
+
+django.setup()
 # Import necessary modules
 from contio_backend import settings
 from django.core.mail import send_mail
@@ -10,9 +13,7 @@ import datetime
 import sys
 from http.server import BaseHTTPRequestHandler
 import os
-import django
 
-django.setup()
 
 
 # Initialize Django
