@@ -13,13 +13,7 @@ import datetime
 import sys
 from http.server import BaseHTTPRequestHandler
 import os
-
-# Initialize Django
-# Add your project's base directory to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__))
-print('Checking emails...')
-
-# Define the handler for Vercel
 class handler(BaseHTTPRequestHandler):
     print('ENTERING HANDLER PLEASE LOG')
 
