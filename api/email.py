@@ -1,17 +1,18 @@
-import os
-from http.server import BaseHTTPRequestHandler
-import sys
-import datetime
-from django.conf import settings
-from src.models import OriginEmailStatus, Meeting
-from django.utils import timezone
-import time
-import json
-from django.core.mail import send_mail
 from contio_backend import settings
+from django.core.mail import send_mail
+import json
+import time
+from django.utils import timezone
+from src.models import OriginEmailStatus, Meeting
+from django.conf import settings
+import datetime
+import sys
+from http.server import BaseHTTPRequestHandler
+import os
 import django
-
+# You stay here please!
 django.setup()
+
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 
