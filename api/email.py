@@ -1,3 +1,7 @@
+import django
+django.setup()
+
+# You stay here please!
 from contio_backend import settings
 from django.core.mail import send_mail
 import json
@@ -9,9 +13,7 @@ import datetime
 import sys
 from http.server import BaseHTTPRequestHandler
 import os
-import django
-# You stay here please!
-django.setup()
+
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
